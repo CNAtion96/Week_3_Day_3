@@ -1,10 +1,18 @@
 $(document).ready(function() {
 
+	var tdList = [];
+
+	function listItem(name){
+		this.name = name;
+		this.complete = false;
+	}
+
 	$('form').on("submit",function(e){
 		e.preventDefault();
 
 		var content = $('input').val();
 
+		tdList.push(listItem(content));
 
 		$('.items').append(`
 			<li>
@@ -17,6 +25,13 @@ $(document).ready(function() {
 			</li>
 		`)
 	})
-
+	
+	$('body').on('click','.delete', function(){
+			$(this).parent().parent().remove();
+	})
+	$('body').on('click', '.check', function(){
+		$(this).status = true;
+		console.log(this.status);
+	})
 });
 
